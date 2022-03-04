@@ -1,0 +1,79 @@
+-
+    common: &common
+        featureName: 登录模块
+        storyName: 用户2u号登录
+        host: subject
+        url: /V3/user/login/v2
+        method: post
+        headers:
+            language: "zh"
+        data:
+            areaCode: "86"
+            key: "21110355166"
+            password: "000000"
+        asserts:
+            statusCode: 200
+            success: True
+            resultCode: 1
+-
+    <<: *common
+    caseTitle: 使用 2u 号 正常登录
+
+-
+    <<: *common
+    caseTitle: 传错误的2u号登录
+    data:
+        areaCode: "86"
+        key: 2111035511
+        password: "000000"
+
+-   <<: *common
+    caseTitle: 不传2u登录
+    data:
+        areaCode: "86"
+        key:
+        password: "000000"
+
+-
+    <<: *common
+    caseTitle: 传错误的密码登录
+    data:
+        areaCode: 86
+        key: 21110355166
+        password: "0000"
+
+-
+    <<: *common
+    caseTitle: 不传密码登录
+    data:
+        areaCode: "86"
+        key: 21110355166
+        password:
+
+-
+    <<: *common
+    caseTitle: 传错误的区号登录
+    data:
+        areaCode: "6"
+        key: 21110355166
+        password: "000000"
+
+-
+    <<: *common
+    caseTitle: 不传区号登录
+    data:
+        areaCode:
+        key: 21110355166
+        password: "000000"
+
+-
+    <<: *common
+    caseTitle: 传错误的语言登录
+    headers:
+        language: "h"
+
+-
+    <<: *common
+    caseTitle: 不传语言登录
+    headers:
+        language:

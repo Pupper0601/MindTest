@@ -1,0 +1,29 @@
+-
+    common: &common
+        featureName: 登录模块
+        storyName: 游客登录
+        host: tourist
+        url: /V3/user/touristLogin
+        method: post
+        headers:
+            language: "zh"
+        asserts:
+            statusCode: 200
+            success: True
+            resultCode: 1
+
+-
+    <<: *common
+    caseTitle: 游客登录
+
+-
+    <<: *common
+    caseTitle: 不传语言
+    headers:
+        language:
+
+-
+    <<: *common
+    caseTitle: 传错误语言
+    headers:
+        language: z

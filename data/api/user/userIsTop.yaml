@@ -1,0 +1,75 @@
+-
+    common: &common
+        featureName: 用户操作
+        storyName: 查询好友或群组是否置顶
+        host: subject
+        url: /V3/user/isTop
+        method: get
+        headers:
+            language: "zh"
+            access_token:
+        params:
+            type: 1
+            id: 100284871
+        asserts:
+            statusCode: 200
+
+-
+    <<: *common
+    caseTitle: 查询好友是否置顶
+
+-
+    <<: *common
+    caseTitle: 传错误类型
+    params:
+        type: 3
+        id: 100284871
+
+-
+    <<: *common
+    caseTitle: 不传类型
+    params:
+        type:
+        id: 100284871
+
+-
+    <<: *common
+    caseTitle: 传错误好友 id
+    params:
+        type: 1
+        id: 10028487
+
+-
+    <<: *common
+    caseTitle: 不传好友 id
+    params:
+        type: 1
+        id:
+
+-
+    <<: *common
+    caseTitle: 不传 token
+    headers:
+        language: "zh"
+        access_token: ""
+
+-
+    <<: *common
+    caseTitle: 传错误 token
+    headers:
+        language: "zh"
+        access_token: abc
+
+-
+    <<: *common
+    caseTitle: 不传语言
+    headers:
+        language:
+        access_token:
+
+-
+    <<: *common
+    caseTitle: 传错误语言
+    headers:
+        language: "z"
+        access_token:

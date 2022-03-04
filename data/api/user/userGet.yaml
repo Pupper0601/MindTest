@@ -1,0 +1,42 @@
+-
+    common: &common
+        featureName: 用户操作
+        storyName: 获取用户信息
+        host: subject
+        url: /V3/user/get
+        method: post
+        headers:
+            language: "zh"
+        data:
+            access_token:
+        asserts:
+            statusCode: 200
+            success: True
+
+-
+    <<: *common
+    caseTitle: 正常获取用户信息
+
+-
+    <<: *common
+    caseTitle: 错误 token 获取用户信息
+    data:
+        access_token: 123
+
+-
+    <<: *common
+    caseTitle: 无 token 获取用户信息
+    data:
+        access_token: 123
+
+-
+    <<: *common
+    caseTitle: 不传语言获取用户信息
+    headers:
+        language:
+
+-
+    <<: *common
+    caseTitle: 错误语言 获取用户信息
+    headers:
+        language:

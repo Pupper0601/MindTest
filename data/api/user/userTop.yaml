@@ -1,0 +1,96 @@
+-
+    common: &common
+        featureName: 用户操作
+        storyName: 好友或群组置顶
+        host: subject
+        url: /V3/user/top
+        method: post
+        headers:
+            language: "zh"
+            access_token:
+        data:
+            type: 1
+            id: 100284871
+            top: 1
+        asserts:
+            statusCode: 200
+
+-
+    <<: *common
+    caseTitle: 置顶好友
+
+-
+    <<: *common
+    caseTitle: 传错误类型
+    data:
+        type: 3
+        id: 100284871
+        top: 1
+
+-
+    <<: *common
+    caseTitle: 不传类型
+    data:
+        type:
+        id: 100284871
+        top: 1
+
+-
+    <<: *common
+    caseTitle: 传错误好友 id
+    data:
+        type: 1
+        id: 10028487
+        top: 1
+
+-
+    <<: *common
+    caseTitle: 不传好友 id
+    data:
+        type: 1
+        id: 100284871
+        top: 1
+
+-
+    <<: *common
+    caseTitle: 不传指定代号
+    data:
+        type: 1
+        id: 100284871
+        top:
+
+-
+    <<: *common
+    caseTitle: 传错误置顶代号
+    data:
+        type: 1
+        id: 100284871
+        top: 3
+
+-
+    <<: *common
+    caseTitle: 不传 token
+    headers:
+        language: "zh"
+        access_token: ""
+
+-
+    <<: *common
+    caseTitle: 传错误 token
+    headers:
+        language: "zh"
+        access_token: abc
+
+-
+    <<: *common
+    caseTitle: 不传语言
+    headers:
+        language:
+        access_token:
+
+-
+    <<: *common
+    caseTitle: 传错误语言
+    headers:
+        language: "z"
+        access_token:
